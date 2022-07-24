@@ -1,0 +1,4 @@
+extend type Query {
+  locations(page: Int): Locations!
+  location(id: ID!): Location
+}

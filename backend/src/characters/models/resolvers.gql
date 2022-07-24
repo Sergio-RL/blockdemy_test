@@ -1,0 +1,4 @@
+type Query {
+  characters(page: Int): Characters!
+  character(id: ID!): Character!
+}

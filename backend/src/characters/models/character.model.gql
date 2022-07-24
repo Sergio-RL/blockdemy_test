@@ -1,0 +1,30 @@
+type PaginationData {
+  next: Int
+  pages: Int
+  count: Int
+  prev: Int
+}
+
+type SubDoc {
+  id: String
+  name: String
+}
+
+type Character {
+  id: ID
+  name: String
+  status: String
+  species: String
+  type: String
+  gender: String
+  origin: SubDoc
+  location: SubDoc
+  image: String
+  episode: [SubDoc]
+  created: String
+}
+
+type Characters {
+  info: PaginationData
+  results: [Character]
+}

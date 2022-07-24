@@ -1,0 +1,13 @@
+type Location {
+  id: ID
+  name: String
+  type: String
+  dimension: String
+  residents: [SubDoc]
+  created: String
+}
+
+type Locations {
+  info: PaginationData
+  results: [Location]
+}

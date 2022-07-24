@@ -1,0 +1,4 @@
+extend type Query {
+  episodes(page: Int): Episodes!
+  episode(id: ID!): Episode
+}
