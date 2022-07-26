@@ -1,12 +1,5 @@
 import styled from "styled-components";
-
-interface TextParams {
-  margin?: string;
-  padding?: string;
-  fontSize?: string;
-  fontWeight?: string;
-  textAlign?: "center" | "left" | "right";
-}
+import { TextParams } from "../../interfaces/TextParams";
 
 interface HrParams {
   margin?: string;

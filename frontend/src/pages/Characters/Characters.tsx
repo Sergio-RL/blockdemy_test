@@ -36,7 +36,12 @@ const Characters: React.FC = () => {
       created: new Date(character.created),
     };
     setCurrentCharacter(characterData);
-    // setHistory((old) => [...old, characterData]);
+    setHistory((old) => [characterData, ...old]);
+  };
+
+  const onClick = (id: number) => {
+    const character = history.find(({ id: characterId }) => characterId === id);
+    setCurrentCharacter(character);
   };
 
   return (
@@ -46,7 +51,7 @@ const Characters: React.FC = () => {
         <Button onClick={fetchCharacter}>GENERATE</Button>{" "}
       </Navbar>
       <CharacterInfo character={currentCharacter} />
-      <CharacterHistory />
+      <CharacterHistory history={history} onClick={onClick} />
     </div>
   );
 };
