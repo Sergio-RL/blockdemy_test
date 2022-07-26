@@ -1,43 +1,33 @@
-import { gql } from "@apollo/client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { client } from "../../apollo.config";
 import CharacterHistory from "../../components/CharacterHistory/CharacterHistory";
 import CharacterInfo from "../../components/CharacterInfo/CharacterInfo";
 import { Character } from "../../interfaces/Character";
-import { Navbar } from "./Characters.style";
+import { Button, Navbar } from "./Characters.style";
+import { CHARACTER } from "./query";
 
 const Characters: React.FC = () => {
   const [history, setHistory] = useState<Character[]>([]);
   const [currentCharacter, setCurrentCharacter] = useState<Character>();
 
-  const fetchCharacter = useCallback(async () => {
+  const generateRandomNumber = (): number => {
+    const ids = history.map(({ id }) => id);
+    const max = 826;
+    let randomNumber = Math.floor(Math.random() * max) + 1;
+    if (max === ids.length) throw new Error("Max elements reached");
+    return ids.includes(randomNumber) ? generateRandomNumber() : randomNumber;
+  };
+
+  const fetchCharacter = async () => {
+    const randomNumber = generateRandomNumber();
     const {
       data: { character },
+      loading,
     } = await client.query({
-      query: gql`
-        {
-          character(id: 1) {
-            id
-            name
-            status
-            species
-            type
-            gender
-            origin {
-              name
-            }
-            location {
-              name
-            }
-            image
-            episode {
-              name
-            }
-            created
-          }
-        }
-      `,
+      query: CHARACTER,
+      variables: { id: randomNumber },
     });
+
     const characterData = {
       ...character,
       location: character.location.name,
@@ -46,21 +36,16 @@ const Characters: React.FC = () => {
       created: new Date(character.created),
     };
     setCurrentCharacter(characterData);
-    setHistory((old) => [...old, characterData]);
-  }, [setCurrentCharacter]);
-
-  useEffect(() => {
-    fetchCharacter();
-  }, [fetchCharacter]);
-
-  useEffect(() => {
-    console.log(currentCharacter?.created);
-  }, [currentCharacter]);
+    // setHistory((old) => [...old, characterData]);
+  };
 
   return (
     <div>
-      <Navbar>Rick and Morty Characters</Navbar>
-      <CharacterInfo />
+      <Navbar>
+        Rick and Morty Characters{" "}
+        <Button onClick={fetchCharacter}>GENERATE</Button>{" "}
+      </Navbar>
+      <CharacterInfo character={currentCharacter} />
       <CharacterHistory />
     </div>
   );
