@@ -9,7 +9,11 @@ import { CHARACTER } from "./query";
 const Characters: React.FC = () => {
   const [history, setHistory] = useState<Character[]>([]);
   const [loadingData, setLoadingData] = useState<boolean>(false);
-  const [currentCharacter, setCurrentCharacter] = useState<Character>();
+  const [characterId, setCharacterId] = useState<number>();
+
+  const currentCharacter = history.find(
+    ({ id }: Character) => id === characterId
+  );
 
   const generateRandomNumber: () => number = (): number => {
     const ids = history.map(({ id }) => id);
@@ -30,20 +34,25 @@ const Characters: React.FC = () => {
       variables: { id: randomNumber },
     });
     setLoadingData(loading);
-    const characterData = {
-      ...character,
-      location: character.location.name,
-      origin: character.origin.name,
-      episode: character.episode.map(({ name }: { name: string }) => name),
-      created: new Date(character.created),
-    };
-    setCurrentCharacter(characterData);
-    setHistory((old) => [characterData, ...old]);
+    setHistory((old) => [
+      {
+        ...character,
+        location: character.location.name,
+        origin: character.origin.name,
+        episode: character.episode.map(({ name }: { name: string }) => name),
+        created: new Date(character.created),
+      },
+      ...old,
+    ]);
   };
 
+  useEffect(() => {
+    const { id } = history[0] || 0;
+    setCharacterId(id);
+  }, [history]);
+
   const onClick = (id: number) => {
-    const character = history.find(({ id: characterId }) => characterId === id);
-    setCurrentCharacter(character);
+    setCharacterId(id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
