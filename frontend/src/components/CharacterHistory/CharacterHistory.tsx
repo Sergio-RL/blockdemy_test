@@ -14,10 +14,10 @@ const CharacterHistory: React.FC<{
   onClick: (id: number) => void;
 }> = ({ history, onClick }) => {
   const characters = history.map(({ image, name, id }) => (
-    <Row>
+    <Row key={id}>
       <DataContainer>
         <Img src={image} />
-        <Text fontSize="1.75em" margin="0.5em">
+        <Text fontSize="1.5em" margin="0 0.5em">
           {name}
         </Text>
       </DataContainer>
@@ -27,7 +27,11 @@ const CharacterHistory: React.FC<{
 
   return (
     <Container width="100%">
-      <Text fontSize="3em">History</Text>
+      {!!history.length && (
+        <Text fontSize="3em" margin="0 1em 1em">
+          History
+        </Text>
+      )}
       <Container width="70%">{characters}</Container>
     </Container>
   );

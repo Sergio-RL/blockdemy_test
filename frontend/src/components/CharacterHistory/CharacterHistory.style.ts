@@ -28,12 +28,13 @@ export const DataContainer = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 7em;
+  width: 6em;
 `;
 
 export const Text = styled.p`
   font-weight: 900;
   font-size: ${({ fontSize }: TextParams) => fontSize || "1em"};
+  margin: ${({ margin }: TextParams) => margin || 0};
 `;
 
 export const Btn = styled.button`

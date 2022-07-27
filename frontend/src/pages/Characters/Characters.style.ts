@@ -6,13 +6,3 @@ export const Navbar = styled.div`
   font-size: 1.25em;
   font-weight: 900;
 `;
-
-export const Button = styled.button`
-  border: 0;
-  border-radius: 0.25em;
-  font-size: 1em;
-  padding: 0.5em 1em;
-  margin-left: 2em;
-  background-color: #141414;
-  cursor: pointer;
-`;

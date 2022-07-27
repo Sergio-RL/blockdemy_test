@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { client } from "../../apollo.config";
-import CharacterHistory from "../../components/CharacterHistory/CharacterHistory";
-import CharacterInfo from "../../components/CharacterInfo/CharacterInfo";
+import CharacterHistory from "../../components/CharacterHistory";
+import CharacterInfo from "../../components/CharacterInfo";
 import { Character } from "../../interfaces/Character";
-import { Navbar, Button } from "./Characters.style";
+import { Navbar } from "./Characters.style";
 import { CHARACTER } from "./query";
 
 const Characters: React.FC = () => {
   const [history, setHistory] = useState<Character[]>([]);
+  const [loadingData, setLoadingData] = useState<boolean>(false);
   const [currentCharacter, setCurrentCharacter] = useState<Character>();
 
-  const generateRandomNumber = (): number => {
+  const generateRandomNumber: () => number = (): number => {
     const ids = history.map(({ id }) => id);
     const max = 826;
     let randomNumber = Math.floor(Math.random() * max) + 1;
@@ -20,6 +21,7 @@ const Characters: React.FC = () => {
 
   const fetchCharacter = async () => {
     const randomNumber = generateRandomNumber();
+    setLoadingData(true);
     const {
       data: { character },
       loading,
@@ -27,7 +29,7 @@ const Characters: React.FC = () => {
       query: CHARACTER,
       variables: { id: randomNumber },
     });
-
+    setLoadingData(loading);
     const characterData = {
       ...character,
       location: character.location.name,
@@ -51,6 +53,7 @@ const Characters: React.FC = () => {
       <CharacterInfo
         character={currentCharacter}
         generateCharacter={fetchCharacter}
+        loadingData={loadingData}
       />
       <CharacterHistory history={history} onClick={onClick} />
     </div>

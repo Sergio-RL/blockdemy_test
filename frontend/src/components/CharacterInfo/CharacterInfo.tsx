@@ -15,7 +15,8 @@ import {
 const CharacterInfo: React.FC<{
   character: Character | undefined;
   generateCharacter: () => {};
-}> = ({ character, generateCharacter }) => {
+  loadingData: boolean;
+}> = ({ character, generateCharacter, loadingData }) => {
   // This constants are like computed in Vue
   const data = [
     { text: "Status:", value: character?.status || "unknown" },
@@ -28,20 +29,26 @@ const CharacterInfo: React.FC<{
   ];
 
   const rows = data.map(({ text, value }, i) => (
-    <>
+    <div key={i}>
       {i ? <Hr width="90%" margin="5%" /> : null}
       <Row>
         <b>{text}</b> <Text>{value}</Text>
       </Row>
-    </>
+    </div>
   ));
+
+  const GeneratorButton = () => (
+    <Button onClick={generateCharacter} disabled={loadingData}>
+      GENERATE
+    </Button>
+  );
 
   return !character ? (
     <Column>
       <Text fontSize="2em" padding="4em" textAlign="center">
         No se ha cargado ningún personaje
       </Text>
-      <Button onClick={generateCharacter}>GENERATE</Button>
+      <GeneratorButton />
     </Column>
   ) : (
     <Container>
@@ -59,7 +66,7 @@ const CharacterInfo: React.FC<{
           <Hr />
           {rows}
         </CharacterData>
-        <Button onClick={generateCharacter}>GENERATE</Button>
+        <GeneratorButton />
       </Column>
     </Container>
   );

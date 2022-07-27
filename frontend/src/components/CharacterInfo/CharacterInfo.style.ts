@@ -29,6 +29,7 @@ export const Container = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const CharacterData = styled.div`
@@ -75,7 +76,7 @@ export const Button = styled.button`
   border-radius: 0.25em;
   font-size: 1em;
   padding: 0.5em 1em;
-  margin-left: 2em;
+  margin: 1em 0;
   background-color: #141414;
   cursor: pointer;
 `;
