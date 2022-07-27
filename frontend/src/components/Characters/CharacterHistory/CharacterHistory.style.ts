@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextParams } from "../../interfaces/TextParams";
+import { TextParams } from "../../../interfaces/TextParams";
 
 export const Container = styled.div`
   display: flex;

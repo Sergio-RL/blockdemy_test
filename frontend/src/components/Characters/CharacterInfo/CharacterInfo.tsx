@@ -1,5 +1,5 @@
 import React from "react";
-import { Character } from "../../interfaces/Character";
+import { Character } from "../../../interfaces/Character";
 import {
   CharacterData,
   Container,

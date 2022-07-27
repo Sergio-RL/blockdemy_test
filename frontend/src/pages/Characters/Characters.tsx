@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { client } from "../../apollo.config";
-import CharacterHistory from "../../components/CharacterHistory";
-import CharacterInfo from "../../components/CharacterInfo";
+import CharacterHistory from "../../components/Characters/CharacterHistory";
+import CharacterInfo from "../../components/Characters/CharacterInfo";
 import { Character } from "../../interfaces/Character";
 import { Navbar } from "./Characters.style";
 import { CHARACTER } from "./query";
