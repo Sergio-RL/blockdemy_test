@@ -10,9 +10,9 @@ export const Navbar = styled.div`
 export const Button = styled.button`
   border: 0;
   border-radius: 0.25em;
-  border-color: white;
   font-size: 1em;
   padding: 0.5em 1em;
   margin-left: 2em;
+  background-color: #141414;
   cursor: pointer;
 `;

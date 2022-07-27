@@ -1,6 +1,13 @@
 import React from "react";
 import { Character } from "../../interfaces/Character";
-import { Btn, Container, Img, Row, Text } from "./CharacterHistory.style";
+import {
+  Btn,
+  Container,
+  DataContainer,
+  Img,
+  Row,
+  Text,
+} from "./CharacterHistory.style";
 
 const CharacterHistory: React.FC<{
   history: Character[];
@@ -8,8 +15,12 @@ const CharacterHistory: React.FC<{
 }> = ({ history, onClick }) => {
   const characters = history.map(({ image, name, id }) => (
     <Row>
-      <Img src={image} />
-      <Text fontSize="1.5em">{name}</Text>
+      <DataContainer>
+        <Img src={image} />
+        <Text fontSize="1.75em" margin="0.5em">
+          {name}
+        </Text>
+      </DataContainer>
       <Btn onClick={() => onClick(id)}>View</Btn>
     </Row>
   ));
@@ -17,7 +28,7 @@ const CharacterHistory: React.FC<{
   return (
     <Container width="100%">
       <Text fontSize="3em">History</Text>
-      <Container width="80%">{characters}</Container>
+      <Container width="70%">{characters}</Container>
     </Container>
   );
 };

@@ -26,11 +26,21 @@ export const Container = styled.div`
   align-items: flex-start;
 `;
 
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const CharacterData = styled.div`
   display: flex;
   background-color: #141414;
   flex-direction: column;
   width: 27em;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0px 0px 10px grey;
+  }
 `;
 
 export const Row = styled.div`
@@ -58,4 +68,14 @@ export const Img = styled.img`
   @media (max-width: 600px) {
     width: 10em;
   }
+`;
+
+export const Button = styled.button`
+  border: 0;
+  border-radius: 0.25em;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  margin-left: 2em;
+  background-color: #141414;
+  cursor: pointer;
 `;

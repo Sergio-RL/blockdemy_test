@@ -9,10 +9,22 @@ export const Container = styled.div`
 `;
 
 export const Row = styled.div`
+  width: 100%;
   background-color: #141414;
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0px 0px 10px grey;
+  }
+`;
+
+export const DataContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const Img = styled.img`
@@ -25,7 +37,9 @@ export const Text = styled.p`
 `;
 
 export const Btn = styled.button`
-  padding: 1em 1.5em;
+  margin-right: 1em;
+  padding: 0.75em 1em;
+  font-size: 1.25em;
   border-radius: 9px;
   border: none;
 `;

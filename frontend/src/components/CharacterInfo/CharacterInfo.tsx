@@ -8,11 +8,14 @@ import {
   Heading,
   Text,
   Hr,
+  Button,
+  Column,
 } from "./CharacterInfo.style";
 
-const CharacterInfo: React.FC<{ character: Character | undefined }> = ({
-  character,
-}) => {
+const CharacterInfo: React.FC<{
+  character: Character | undefined;
+  generateCharacter: () => {};
+}> = ({ character, generateCharacter }) => {
   // This constants are like computed in Vue
   const data = [
     { text: "Status:", value: character?.status || "unknown" },
@@ -34,24 +37,30 @@ const CharacterInfo: React.FC<{ character: Character | undefined }> = ({
   ));
 
   return !character ? (
-    <Text fontSize="2em" padding="4em" textAlign="center">
-      No se ha cargado ningún personaje
-    </Text>
+    <Column>
+      <Text fontSize="2em" padding="4em" textAlign="center">
+        No se ha cargado ningún personaje
+      </Text>
+      <Button onClick={generateCharacter}>GENERATE</Button>
+    </Column>
   ) : (
     <Container>
       <Img src={character?.image} />
-      <CharacterData>
-        <Heading>
-          <Text fontSize="1.25em" fontWeight="900">
-            {character?.name}
-          </Text>
-          <Text fontSize="0.7em" fontWeight="900">
-            CHARACTER ID: {character?.id}
-          </Text>
-        </Heading>
-        <Hr />
-        {rows}
-      </CharacterData>
+      <Column>
+        <CharacterData>
+          <Heading>
+            <Text fontSize="1.25em" fontWeight="900">
+              {character?.name}
+            </Text>
+            <Text fontSize="0.7em" fontWeight="900">
+              CHARACTER ID: {character?.id}
+            </Text>
+          </Heading>
+          <Hr />
+          {rows}
+        </CharacterData>
+        <Button onClick={generateCharacter}>GENERATE</Button>
+      </Column>
     </Container>
   );
 };

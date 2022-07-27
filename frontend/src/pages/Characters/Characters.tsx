@@ -3,7 +3,7 @@ import { client } from "../../apollo.config";
 import CharacterHistory from "../../components/CharacterHistory/CharacterHistory";
 import CharacterInfo from "../../components/CharacterInfo/CharacterInfo";
 import { Character } from "../../interfaces/Character";
-import { Button, Navbar } from "./Characters.style";
+import { Navbar, Button } from "./Characters.style";
 import { CHARACTER } from "./query";
 
 const Characters: React.FC = () => {
@@ -42,15 +42,16 @@ const Characters: React.FC = () => {
   const onClick = (id: number) => {
     const character = history.find(({ id: characterId }) => characterId === id);
     setCurrentCharacter(character);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div>
-      <Navbar>
-        Rick and Morty Characters{" "}
-        <Button onClick={fetchCharacter}>GENERATE</Button>{" "}
-      </Navbar>
-      <CharacterInfo character={currentCharacter} />
+      <Navbar>Rick and Morty Characters </Navbar>
+      <CharacterInfo
+        character={currentCharacter}
+        generateCharacter={fetchCharacter}
+      />
       <CharacterHistory history={history} onClick={onClick} />
     </div>
   );
