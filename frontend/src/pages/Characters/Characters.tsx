@@ -47,7 +47,7 @@ const Characters: React.FC = () => {
   };
 
   useEffect(() => {
-    const { id } = history[0] || 0;
+    const { id } = history[0] || { id: 0 };
     setCharacterId(id);
   }, [history]);
 
