@@ -4,7 +4,8 @@
   "description": "Rick & Morty API",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "webpack --mode production"
   },
   "author": "ME",
   "license": "ISC",
@@ -21,7 +22,11 @@
     "@babel/core": "^7.18.9",
     "@babel/node": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
+    "babel-loader": "^8.2.5",
     "babel-plugin-import-graphql": "^2.8.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }

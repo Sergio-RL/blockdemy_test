@@ -39,6 +39,7 @@ const startServer = async (typeDefs, resolvers) => {
   });
 
   mongoose.connect(process.env.MONGODB_URI).then(() => {
+    console.log(`🚀 Mongoose connected!`);
     seedDB();
   });
 
